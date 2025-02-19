@@ -1,0 +1,44 @@
+import "package:flutter/material.dart";
+  
+  void main(){
+    runApp(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox.expand(
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children:[
+              Text("Primeira celula da coluna"),
+              Text("Segunda celula da coluna"),
+              Text("Terceira celula da coluna"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                Icon(Icons.restaurant),
+                Icon(Icons.airport_shuttle),
+                Icon(Icons.king_bed),
+                Icon(Icons.kitchen)
+              ]
+              ),
+              TextButton(
+                onPressed: (){ print("Se fodeu");},
+                child: Text("TextButton")
+              
+              ),
+              ElevatedButton(
+              onPressed: () { print("elevatedbutton");},
+              child: Text("ElevatedButton")
+                ),
+              OutlinedButton(
+                onPressed: (){ print("outlinebuttob");},
+                child: Text("OutlineButton")            
+              )
+            ]
+            )
+            )
+          )
+        )
+      );
+  }
+             
