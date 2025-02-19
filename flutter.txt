@@ -1,0 +1,46 @@
+import "package:flutter/material.dart";
+  
+  void main(){
+    runApp(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Container(
+              child: Padding(
+            child: Text("Benny"),
+              padding: EdgeInsets.all(6.0)
+              ),
+            decoration: BoxDecoration(
+               color: Colors.white,
+               border: Border.all(
+                 color: Colors.orange,
+                  width: 30
+                  ),
+                boxShadow:[
+                  BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(-20,5),
+                  blurRadius: 3
+                  )
+                ],
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(60.0))
+                )
+              )
+            ),
+          appBar: AppBar(
+            title: Text(
+              "Meu App Decente",
+              style: TextStyle(color: Colors.white)
+            ),
+              backgroundColor: Colors.black
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {print("botão pressionado"); },
+            child: Icon(Icons.access_alarm_rounded)
+          ),
+        ),
+        debugShowCheckedModeBanner: false
+      )
+    ); 
+}
