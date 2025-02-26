@@ -1,0 +1,63 @@
+
+class Conta{
+  String descricao;
+  double valor;
+  DateTime vencimento = DateTime.parse("2025-02-25");
+  DateTime? pagamento;
+  double jurosPorDia = 5;
+  int get diasVencidos => pagamento!.difference(vencimento).inDays;
+  Conta(this.descricao, this.valor);
+  
+  double calcularValor(){
+    if (pagamento != null && diasVencidos > 0){
+      return valor + valor * jurosPorDia / 100 * diasVencidos;
+    }
+    return valor;
+  }
+  
+  @override
+  String toString(){
+    return '''
+    --------------------------------------------
+    CONTA: $descricao - VALOR: R\$ ${ calcularValor().toStringAsFixed(2)}
+     Vencimento: ${vencimento.toLocal().toString()} ${diasVencidos > 0 ? "Dia(s): $diasVencidos" : ''}
+      Pagamento; ${pagamento != null ? pagamento!.toString() : "NÃO PAGA"}
+    --------------------------------------------
+  ''';
+  }
+ }
+
+  class Orcamento{
+    String mes;
+    List<Conta> contas = [];
+    
+    Orcamento(this.mes);
+    
+    double totalizar(){
+      double total = 0;
+    for(var conta in contas){
+      total += conta.calcularValor();
+    }
+    return total;
+  }
+}
+void main() {
+    var conta1 = Conta('internet', 300);
+    conta1.vencimento = DateTime.parse("2025-02-21");
+    conta1.pagamento = DateTime.parse("2025-02-24");
+    print(conta1.toString());
+  
+    var conta2 = Conta("agua", 85.4);
+    conta2.pagamento = DateTime.parse("2025-02-25");
+    print(conta2);
+  
+    var conta3 = Conta("luz", 250);
+    conta3.jurosPorDia = 10;
+    conta3.pagamento = DateTime.parse("2025-02-27");
+    print(conta3);
+  
+    var orcamento = Orcamento("fevereiro de 2025");
+    orcamento.contas.addAll([conta1, conta2, conta3]);
+    print("Orçamento despesas mensais: R\S ${orcamento.totalizar().toStringAsFixed(2)}");
+  
+}
